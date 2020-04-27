@@ -2,11 +2,14 @@ import * as React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
+import {googleLogin} from './LoginPage'
+
+
 
 /* navigation */
 import { createStackNavigator, createAppContainer, NavigationContainer  } from 'react-navigation';
 
-import { MonoText } from '../components/StyledText';
+// import { MonoText } from '../components/StyledText';
 
 export default function HomeScreen({navigation}) {
   return (
@@ -26,13 +29,13 @@ export default function HomeScreen({navigation}) {
         <View style={styles.getStartedContainer}>
           <DevelopmentModeNotice />
 
-          <Text style={styles.getStartedText}>Open up the code for this screen: </Text>
+          <Text style={styles.getStartedText}>Open up the code: </Text>
 
         </View>
 
         <View style={styles.helpContainer}>
           <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Button title="Sigin with Google" onPress={() => navigation.navigate('Login')} />
+            <Button title="Sign up or Log in with Google" onPress={() => navigation.navigate('LoginPage')} />
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -40,7 +43,7 @@ export default function HomeScreen({navigation}) {
       <View style={styles.tabBarInfoContainer}>
         <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
         <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <MonoText style={styles.codeHighlightText}>navigation/BottomTabNavigator.js</MonoText>
+          <Text style={styles.codeHighlightText}>navigation/BottomTabNavigator.js</Text>
         </View>
       </View>
     </View>
