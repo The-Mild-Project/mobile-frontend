@@ -22,6 +22,7 @@
     "@react-navigation/web": "~1.0.0-alpha.9",
     "expo": "~36.0.0",
     "expo-asset": "~8.0.0",
+    "expo-auth-session": "^1.1.0",
     "expo-constants": "~8.0.0",
     "expo-font": "~8.0.0",
     "expo-google-app-auth": "^8.1.0",
