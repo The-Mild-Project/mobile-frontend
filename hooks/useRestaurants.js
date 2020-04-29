@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import axios from "axios";
+import yelp from "../api/yelp";
 
 export default () => {
     const [results, setResults] = useState([]);
+
     const searchApi = async (searchTerm) => {
-        const response = await getRestaurantFromBackend();
+        const response = await yelp.get('');
         setResults(response.data);
     };
 
@@ -14,17 +16,13 @@ export default () => {
     }, []);
 
     async function getRestaurantFromBackend() {
-        axios.get('https://foodapp-user-service.herokuapp.com/test/restaurant/all', {
+        const response = await axios.get('https://foodapp-user-service.herokuapp.com/test/restaurant/all', {
             headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(function (response) {
-            // log user in
-            console.log(response)
-        }).catch(function (error) {
-            // send user back to login page and clear local storage
-            console.log(error);
-        })
+                'Content-Type': 'application/json',
+                'X-Total-Count': 20,
+                'Access-Control-Allow-Origin': true
+            }});
+        return response.json();
     }
 
     return [searchApi, results]
