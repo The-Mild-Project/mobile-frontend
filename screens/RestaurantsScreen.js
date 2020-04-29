@@ -25,7 +25,7 @@ const RestaurantsScreen = () => {
                 <Text>Restaurants</Text>
                 <Text>Search Will Go Here</Text>
             </View>
-            <ResultsList title="First" results={results}/>
+            <ResultsList  results={results}/>
         </ScrollView>
     )
 };
