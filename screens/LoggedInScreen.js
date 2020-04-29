@@ -7,15 +7,17 @@ import * as WebBrowser from 'expo-web-browser';
 
 /* navigation */
 import { createStackNavigator, createAppContainer, NavigationContainer  } from 'react-navigation';
+import RestaurantsScreen from "./RestaurantsScreen";
 
-// import { MonoText } from '../components/StyledText';
-
-export default function LoggedInScreen({route, navigation}) {
+function LoggedInScreen({route, navigation}) {
     let name = route.params.name;
     return (
-        <View style={styles.container}>
-            <Text>Hi {name}, you're logged in</Text>
-        </View>
+        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+            <View style={styles.container}>
+                    <Text>Hi {name}, you're logged in</Text>
+                <Button title="View Restaurants" onPress={() => navigation.navigate('RestaurantsScreen', {"name": name})} />
+            </View>
+        </ScrollView>
     );
 }
 
@@ -115,3 +117,5 @@ const styles = StyleSheet.create({
         color: '#2e78b7',
     },
 });
+
+export default LoggedInScreen

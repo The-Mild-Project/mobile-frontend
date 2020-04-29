@@ -15,16 +15,6 @@ export default function HomeScreen({navigation}) {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
-          />
-        </View>
 
         <View style={styles.getStartedContainer}>
           <DevelopmentModeNotice />
@@ -36,6 +26,8 @@ export default function HomeScreen({navigation}) {
         <View style={styles.helpContainer}>
           <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
             <Button title="Sign up or Log in with Google" onPress={() => navigation.navigate('LoginPage')} />
+            <Button title="Restaurants" onPress={() => navigation.navigate('RestaurantsScreen')} />
+
           </TouchableOpacity>
         </View>
       </ScrollView>
