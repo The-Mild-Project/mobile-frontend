@@ -3,6 +3,7 @@ import { FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Bu
 import {ScrollView} from "react-native-gesture-handler";
 import useRestaurants from "../hooks/useRestaurants";
 import ResultsList from "../components/ResultsList";
+import SearchBar from "../components/SearchBar";
 
 // TODO: Add Searchbar, add term to search
 const RestaurantsScreen = () => {
@@ -21,8 +22,7 @@ const RestaurantsScreen = () => {
     return (
 
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-            <View style={styles.container}>
-            </View>
+            <SearchBar term={term} onTermChange={setTerm} onTermSubmit={() => searchApi(term)}/>
             <View style={styles.container}>
                 <Text>Restaurants</Text>
             </View>
