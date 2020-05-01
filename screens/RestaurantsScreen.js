@@ -10,7 +10,6 @@ const RestaurantsScreen = () => {
     // returns an array
     const [searchApi, results] = useRestaurants();
 
-
     // so we can filter by type of food later
     const filterResultsByType = (genre) => {
         return results.filter(result => {
@@ -18,14 +17,28 @@ const RestaurantsScreen = () => {
         })
     };
 
+    const updateState = (newTerm) =>  {
+        term = newTerm
+    }
+
 
     return (
+
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <View style={styles.container}>
-                <Text>Restaurants</Text>
-                <Text>Search Will Go Here</Text>
             </View>
-            <ResultsList  results={results}/>
+            <View style={styles.container}>
+                <Text>Restaurants</Text>
+            </View>
+            <Picker
+                selectedValue={term}
+                onValueChange={(setTerm)}>
+                <Picker.Item label="Thai" value="thai" />
+                <Picker.Item label="Chinese" value="chinese" />
+                <Picker.Item label="Mexican" value="mexican" />
+                <Picker.Item label="Italian" value="italian" />
+            </Picker>
+            <ResultsList results={results}/>
         </ScrollView>
     )
 };
@@ -33,7 +46,7 @@ const RestaurantsScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 22
+        paddingTop: 12
     },
     item: {
         padding: 10,

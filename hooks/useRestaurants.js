@@ -5,8 +5,13 @@ import yelp from "../api/yelp";
 export default () => {
     const [results, setResults] = useState([]);
 
-    const searchApi = async (searchTerm) => {
-        const response = await yelp.get('');
+    const searchApi = async (type) => {
+        const response = await yelp.get('', {
+            params: {
+                zip:'94010',
+                type:type
+            }
+            });
         setResults(response.data);
     };
 
