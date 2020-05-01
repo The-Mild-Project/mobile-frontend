@@ -2807,21 +2807,17 @@ expo-asset@~8.0.0:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-auth-session@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/expo-auth-session/-/expo-auth-session-1.1.0.tgz#42e2bef59373ad4d24284cb27f3d577a2aabcad4"
-  integrity sha512-+L0KZunWF2SHGcJb/OzcVU+GLzzZb9z+VMdp1S5Q8xxS1y0ZKgnAv7DE/myBe76LDLK71JhPEYGchUEaFkeXsQ==
+expo-auth-session@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/expo-auth-session/-/expo-auth-session-1.2.0.tgz#fac0fc170fafe9fc1e81eb1048870fcdbf9ad882"
+  integrity sha512-wuB3BUISx87valWvYqcxqZFbc1+nt4mpNFd+wwWSeio3P5EOReCYDHijCvmUreaTZJQUshZA3S9ytUvEPwfafA==
   dependencies:
-    expo-constants "^9.0.0"
-    expo-crypto "^8.1.0"
-    expo-random "^8.1.0"
-    expo-web-browser "~8.2.0"
+    expo-constants "~9.0.0"
+    expo-crypto "~8.1.0"
+    expo-linking "~1.0.0"
+    expo-random "~8.1.0"
+    expo-web-browser "~8.2.1"
     qs "6.9.1"
-
-expo-constants@^9.0.0, expo-constants@~9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-9.0.0.tgz#35c600079ee91d38fe4f56375caae6e90f122fdd"
-  integrity sha512-1kqZMM8Ez5JT3sTEx8I69fP6NYFLOJjeM6Z63dD/m2NiwvzSADiO5+BhghnWNGN1L3bxbgOjXS6EHtS7CdSfxA==
 
 expo-constants@~8.0.0:
   version "8.0.0"
@@ -2830,7 +2826,12 @@ expo-constants@~8.0.0:
   dependencies:
     ua-parser-js "^0.7.19"
 
-expo-crypto@^8.1.0:
+expo-constants@~9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-9.0.0.tgz#35c600079ee91d38fe4f56375caae6e90f122fdd"
+  integrity sha512-1kqZMM8Ez5JT3sTEx8I69fP6NYFLOJjeM6Z63dD/m2NiwvzSADiO5+BhghnWNGN1L3bxbgOjXS6EHtS7CdSfxA==
+
+expo-crypto@~8.1.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/expo-crypto/-/expo-crypto-8.1.0.tgz#b5a719bda967ab64f1a5caae180f96d80f94c1c1"
   integrity sha512-nSmxddpSxYAKBePhX6fAx+CGaO2GRz9Np4XW5HmFxjHekjpao7lpvHiYGWAQAKP602LJ+iA/xLBKuMrHu86SNw==
@@ -2872,6 +2873,15 @@ expo-linear-gradient@~8.0.0:
   resolved "https://registry.yarnpkg.com/expo-linear-gradient/-/expo-linear-gradient-8.0.0.tgz#972d33e92714d4a4485635683b5bfa357ecec41b"
   integrity sha512-5G3ePGAHUoyBWbGITw5RtdJpssH8TXhCgt55cV+5LTTFjr51OZcuOmGua1vRoVFKBC/9ibLW465GEx9H/HS07Q==
 
+expo-linking@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/expo-linking/-/expo-linking-1.0.0.tgz#d839e0fc46d56d85c8eb5fe392cbfb4e23e019d4"
+  integrity sha512-Yp5XN37kaD8TtEsaWQvcoKK5PFlnaUMTqioYcmsyrMgNlONb7CaV/QRuadBB8Qlu3I6CDi9QqORpBhlBgWXbAg==
+  dependencies:
+    expo-constants "~9.0.0"
+    qs "^6.5.0"
+    url-parse "^1.4.4"
+
 expo-location@~8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/expo-location/-/expo-location-8.0.0.tgz#58dd54e47b12e26f9f2a97ded3cd15f8fa959b85"
@@ -2884,7 +2894,7 @@ expo-permissions@~8.0.0:
   resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-8.0.0.tgz#5a45e8451dd7ff37c9e6ce5e2447818372547813"
   integrity sha512-GHTRmwh1rd1b0FcibluPFu93NNQyl9b1anBBDVPmomoo9Prz7kDcO5p2hFqM99r896yvAUSe0fPloPKUq4g/1A==
 
-expo-random@^8.1.0:
+expo-random@~8.1.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/expo-random/-/expo-random-8.1.0.tgz#f59a3a0e05b09a95fefee7d4cc5e0aca9cd5c1b6"
   integrity sha512-9n2gg83Hpg3ErkKu+a3FFOGmaPIxaHn6RuzjW24xFckdfmnrAKtbs1aU1aAcmoL1kXPvDeufRSEV/3lW93u6ug==
@@ -2905,10 +2915,10 @@ expo-web-browser@~8.0.0:
   resolved "https://registry.yarnpkg.com/expo-web-browser/-/expo-web-browser-8.0.0.tgz#8a4451c744c115569a4c810dac8851f219a21c72"
   integrity sha512-7/rXUajycSjEF4Zd4tWm8+zP9/zJg8UWj575w2AeGI7RbOwUjqzQd1CFRzQBJkHflrEaTOXJbFHXxjJXdJaL1g==
 
-expo-web-browser@~8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/expo-web-browser/-/expo-web-browser-8.2.0.tgz#18f14fef54bb20e723760083689bc0aef130bb23"
-  integrity sha512-pcXcKbjqsgmSM8lBHRgLhO+OKvlnkwfQHvvA4uVcF1Qv5/2L1zp/VY64E9G1K+5at3KHoZ7JqgFjl7tu7Rzi1Q==
+expo-web-browser@~8.2.1:
+  version "8.2.1"
+  resolved "https://registry.yarnpkg.com/expo-web-browser/-/expo-web-browser-8.2.1.tgz#993ba53371862ed85cfd277ba59a7004ed412905"
+  integrity sha512-cENMuq6nhHRdJlEt0Fk1cPDK5aid8+znJeO6rFoIs7+PokMKtcVYBpzQI/TJlxRP3pjMm0qOISnLlMbDlZ+bfg==
   dependencies:
     compare-urls "^2.0.0"
 

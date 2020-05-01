@@ -17,10 +17,6 @@ const RestaurantsScreen = () => {
         })
     };
 
-    const updateState = (newTerm) =>  {
-        term = newTerm
-    }
-
 
     return (
 
@@ -30,14 +26,6 @@ const RestaurantsScreen = () => {
             <View style={styles.container}>
                 <Text>Restaurants</Text>
             </View>
-            <Picker
-                selectedValue={term}
-                onValueChange={(setTerm)}>
-                <Picker.Item label="Thai" value="thai" />
-                <Picker.Item label="Chinese" value="chinese" />
-                <Picker.Item label="Mexican" value="mexican" />
-                <Picker.Item label="Italian" value="italian" />
-            </Picker>
             <ResultsList results={results}/>
         </ScrollView>
     )
