@@ -5,8 +5,7 @@ import useRestaurants from "../hooks/useRestaurants";
 import ResultsList from "../components/ResultsList";
 import SearchBar from "../components/SearchBar";
 
-const RestaurantsScreen = (props) => {
-    console.log(props)
+const RestaurantsScreen = ({navigation}) => {
     const [term, setTerm] = useState('');
     // returns an array
     const [searchApi, results] = useRestaurants();
@@ -22,7 +21,7 @@ const RestaurantsScreen = (props) => {
             <View style={styles.container}>
                 <Text style={styles.name}>Restaurants</Text>
             </View>
-            <ResultsList results={results}/>
+            <ResultsList navigation={navigation} results={results}/>
         </ScrollView>
     )
 };

@@ -1,10 +1,11 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const ResultsShowScreen = () => {
+const ResultsShowScreen = ({navigation, route}) => {
+    const name = route.params.name
     return (
         <View>
-            <Text>Results Show Screen</Text>
+            <Text>{name}</Text>
         </View>
     );
 };
