@@ -3,10 +3,11 @@ import { FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Bu
 import {ScrollView} from "react-native-gesture-handler";
 import * as SecureStore from "expo-secure-store";
 import preferences from "../api/preferences";
+import PreferencesList from "../components/PreferencesList";
 
 
 const PreferencesScreen =  ({navigation}) => {
-    const [results, setResults] = useState([]);
+    let [results, setResults] = useState([]);
     // get from async storage
     const retrieveItem = async (key) => {
         try {
@@ -20,16 +21,12 @@ const PreferencesScreen =  ({navigation}) => {
 
     useEffect(() => {
         retrieveItem("googleId").then(async (googleId) => {
-            console.log("preferences API called");
-            console.log(googleId);
             try {
                 const response = await preferences.get('', {
                     headers: {
                         googleId: googleId
                     }
                 });
-                console.log("preferences API called");
-                console.log(response.data);
                 setResults(response.data);
             } catch (err) {
                 console.log("Error:", err);
@@ -45,6 +42,7 @@ const PreferencesScreen =  ({navigation}) => {
         <ScrollView style={styles.container}>
             <View style={styles.container}>
                 <Text style={styles.name}>Preferences</Text>
+                <PreferencesList navigation={navigation} results={results}/>
             </View>
         </ScrollView>
     )
