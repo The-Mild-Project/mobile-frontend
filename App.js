@@ -7,6 +7,8 @@ import LoginPage from "./screens/LoginPage";
 import LoggedInScreen from "./screens/LoggedInScreen";
 import RestaurantsScreen from "./screens/RestaurantsScreen";
 import ResultsShowScreen from "./screens/ResultsShowScreen";
+import PreferencesScreen from "./screens/PreferencesScreen";
+
 
 const Stack = createStackNavigator();
 
@@ -19,6 +21,7 @@ function App() {
             <Stack.Screen name="LoggedInScreen" component={LoggedInScreen} />
             <Stack.Screen name="RestaurantsScreen" component={RestaurantsScreen} />
             <Stack.Screen name="ResultsShowScreen" component={ResultsShowScreen} />
+            <Stack.Screen name="PreferencesScreen" component={PreferencesScreen} />
         </Stack.Navigator>
       </NavigationContainer>
   );

@@ -3,17 +3,14 @@ import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button, Asyn
 import * as Google from 'expo-google-app-auth';
 import axios from 'axios'
 import CONFIG from '../config.json';
-
+import * as SecureStore from 'expo-secure-store';
 // store token
 
-function LoginPage({ navigation }) {
+const LoginPage = ({navigation}) => {
     googleLogin(navigation);
     return null;
-}
+};
 
-async function asyncGetDataHelper(key) {
-    return await AsyncStorage.getItem(key);
-}
 
 async function googleLogin(navigation) {
     // wait for access token from Expo's Google API
@@ -28,26 +25,34 @@ async function googleLogin(navigation) {
         // });
         /* `accessToken` is now valid and can be used to get data from the Google API with HTTP requests */
         // store token
-        console.log(typeof(result.accessToken))
-        AsyncStorage.setItem('tokenId', result.accessToken, () => {
-            AsyncStorage.mergeItem('tokenId', result.accessToken, () => {
-                AsyncStorage.getItem('tokenId', (err, result) => {
-                    console.log(result);
-                });
-            });
-        });
 
-        AsyncStorage.setItem('name', result.user.name, () => {
-            AsyncStorage.mergeItem('name', result.user.name, () => {
-                AsyncStorage.getItem('name', (err, result) => {
-                    console.log(result);
-                });
-            });
-        });
-        console.log(result);
+        const retrieveItem = async (key) => {
+            try {
+                const retrievedItem = await SecureStore.getItemAsync(key);
+                console.log('item', retrievedItem);
+            } catch (error) {
+                console.log(error.message);
+            }
+        };
+
+        const setItem = async (key, value) => {
+            try {
+                await SecureStore.setItemAsync(key, value);
+            } catch(e) {
+                console.log(e);
+            }
+        };
+
+        await setItem("googleId", result.idToken);
+        await setItem("name", result.user.name);
+        await setItem("email", result.user.email);
+
+        await retrieveItem("googleId");
+        await retrieveItem("name");
+        await retrieveItem("email");
+
         await passTokenToBackend(result);
-        navigation.navigate('LoggedInScreen', {"name": result.user.name})
-        //return accessToken;
+        navigation.navigate('LoggedInScreen', {"name": result.user.name, "email": result.user.email})
     }
 }
 

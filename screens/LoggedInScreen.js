@@ -11,11 +11,14 @@ import RestaurantsScreen from "./RestaurantsScreen";
 
 function LoggedInScreen({route, navigation}) {
     let name = route.params.name;
+    let email = route.params.email;
+
     return (
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <View style={styles.container}>
-                    <Text>Hi {name}, you're logged in</Text>
-                <Button title="View Restaurants" onPress={() => navigation.navigate('RestaurantsScreen', {"name": name})} />
+                <Text>Hi {name}, you're logged in</Text>
+                <Button title="View Preferences" onPress={() => navigation.navigate('PreferencesScreen', {"name": name, "email": email})} />
+                <Button title="View Restaurants" onPress={() => navigation.navigate('RestaurantsScreen', {"name": name, "email": email})} />
             </View>
         </ScrollView>
     );
@@ -24,10 +27,6 @@ function LoggedInScreen({route, navigation}) {
 LoggedInScreen.navigationOptions = {
     header: null,
 };
-
-async function asyncGetDataHelper(key) {
-    return await AsyncStorage.getItem(key);
-}
 
 const styles = StyleSheet.create({
     container: {

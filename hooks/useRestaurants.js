@@ -12,7 +12,7 @@ export default () => {
                     type: type
                 }
                 });
-            console.log("search API called")
+            console.log("search API called");
             console.log(response);
             setResults(response.data);
         } catch(err) {
