@@ -52,7 +52,7 @@ async function googleLogin(navigation) {
 }
 
 async function passTokenToBackend(result) {
-    axios.get('https://foodapp-user-service.herokuapp.com/test/user/create', {
+    axios.get('http://localhost:8080/test/user/login', {
         headers: {
             'Content-Type': 'application/json',
             'googleId': result.idToken,

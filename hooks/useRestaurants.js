@@ -1,29 +1,29 @@
 import { useEffect, useState } from 'react';
-import axios from "axios";
 import yelp from "../api/yelp";
 
 export default () => {
     const [results, setResults] = useState([]);
 
-    const searchApi = async (searchTerm) => {
-        const response = await yelp.get('');
-        setResults(response.data);
+    const searchApi = async (type) => {
+        try {
+            const response = await yelp.get('', {
+                params: {
+                    zip:'94010',
+                    type: type
+                }
+                });
+            console.log("search API called")
+            console.log(response);
+            setResults(response.data);
+        } catch(err) {
+            console.log(err)
+        }
     };
 
     // set initial search results
     useEffect(() => {
-        searchApi("all");
+        searchApi("pasta");
     }, []);
-
-    async function getRestaurantFromBackend() {
-        const response = await axios.get('https://foodapp-user-service.herokuapp.com/test/restaurant/all', {
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Total-Count': 20,
-                'Access-Control-Allow-Origin': true
-            }});
-        return response.json();
-    }
 
     return [searchApi, results]
 }

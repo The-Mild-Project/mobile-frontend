@@ -3,29 +3,26 @@ import { FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Bu
 import {ScrollView} from "react-native-gesture-handler";
 import useRestaurants from "../hooks/useRestaurants";
 import ResultsList from "../components/ResultsList";
+import SearchBar from "../components/SearchBar";
 
-// TODO: Add Searchbar, add term to search
-const RestaurantsScreen = () => {
+const RestaurantsScreen = (props) => {
+    console.log(props)
     const [term, setTerm] = useState('');
     // returns an array
     const [searchApi, results] = useRestaurants();
 
-
     // so we can filter by type of food later
-    const filterResultsByType = (genre) => {
-        return results.filter(result => {
-            return result.genre === genre;
-        })
-    };
+
 
 
     return (
+
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+            <SearchBar term={term} onTermChange={setTerm} onTermSubmit={() => searchApi(term)}/>
             <View style={styles.container}>
-                <Text>Restaurants</Text>
-                <Text>Search Will Go Here</Text>
+                <Text style={styles.name}>Restaurants</Text>
             </View>
-            <ResultsList title="First" results={results}/>
+            <ResultsList results={results}/>
         </ScrollView>
     )
 };
@@ -33,13 +30,17 @@ const RestaurantsScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 22
+        paddingTop: 12
     },
     item: {
         padding: 10,
         fontSize: 18,
         height: 44,
     },
+    name: {
+        fontSize: 20,
+        fontWeight: 'bold'
+    }
 });
 
 export default RestaurantsScreen;
