@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button, AsyncStorage } from 'react-native';
+import {Button, FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {ScrollView} from "react-native-gesture-handler";
 import * as SecureStore from "expo-secure-store";
 import preferences from "../api/preferences";
@@ -23,7 +23,6 @@ const PreferencesScreen =  ({navigation}) => {
     };
 
     function deleteItem (item, index) {
-        console.log("removing item: ", index);
         console.log(results);
         let newFood = results.food.filter(toRemove => item !== toRemove);
         let newState = {"food": newFood};
@@ -71,7 +70,7 @@ const PreferencesScreen =  ({navigation}) => {
 
         <ScrollView style={styles.container}>
             <View style={styles.container}>
-                <Text style={styles.name}>Preferences</Text>
+                <Text style={styles.name}>Food Preferences</Text>
                     <FlatList
                         data={results.food}
                         renderItem={({item, index}) => {
@@ -85,6 +84,7 @@ const PreferencesScreen =  ({navigation}) => {
                             );
                         }}
                     />
+                <Button title="Add a Preference" onPress={() => navigation.navigate('CreatePreferenceScreen', {"pastResults": results})} />
             </View>
         </ScrollView>
     )

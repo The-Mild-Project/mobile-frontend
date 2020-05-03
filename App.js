@@ -8,6 +8,8 @@ import LoggedInScreen from "./screens/LoggedInScreen";
 import RestaurantsScreen from "./screens/RestaurantsScreen";
 import ResultsShowScreen from "./screens/ResultsShowScreen";
 import PreferencesScreen from "./screens/PreferencesScreen";
+import CreatePreferenceScreen from "./screens/CreatePreferenceScreen";
+
 
 
 const Stack = createStackNavigator();
@@ -22,6 +24,7 @@ function App() {
             <Stack.Screen name="RestaurantsScreen" component={RestaurantsScreen} />
             <Stack.Screen name="ResultsShowScreen" component={ResultsShowScreen} />
             <Stack.Screen name="PreferencesScreen" component={PreferencesScreen} />
+            <Stack.Screen name="CreatePreferenceScreen" component={CreatePreferenceScreen} />
         </Stack.Navigator>
       </NavigationContainer>
   );

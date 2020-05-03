@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button, AsyncStorage } from 'react-native';
+import { FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button, TextInput} from 'react-native';
 import {ScrollView} from "react-native-gesture-handler";
 import * as SecureStore from "expo-secure-store";
 import preferences from "../api/preferences";
-import {Feather} from "@expo/vector-icons";
 
 
-const CreatePreferencesScreen =  ({navigation}) => {
-    let [results, setResults] = useState([]);
-    let [food, setFood] = useState([]);
+const CreatePreferenceScreen =  ({route, navigation}) => {
+    let [results, setResults] = useState([route.params.pastResults]);
+    let [food, setFood] = useState([route.params.pastResults.food]);
+    let [preference, setPreference] = useState("");
     // get from localstorage
     const retrieveItem = async (key) => {
         try {
@@ -20,16 +20,13 @@ const CreatePreferencesScreen =  ({navigation}) => {
         }
     };
 
-    function deleteItem (item, index) {
-        console.log("removing item: ", index);
-        console.log(results);
-        let newFood = results.food.filter(toRemove => item !== toRemove);
+    function addItem (item) {
+        const newFood = results.food.concat(item);
         let newState = {"food": newFood};
         setResults(newState);
         setFood(newFood);
         console.log(newFood);
         let jsonFood = JSON.stringify(newFood);
-
         retrieveItem("googleId").then(async (googleId) => {
             try {
                 const response = await preferences.post('/set',
@@ -76,13 +73,16 @@ const CreatePreferencesScreen =  ({navigation}) => {
                         return (
                             <View style={styles.row}>
                                 <Text style={styles.title}>{item}</Text>
-                                <TouchableOpacity onPress={() => deleteItem(item, index)}>
-                                    <Feather style={styles.icon} name="trash" />
-                                </TouchableOpacity>
                             </View>
                         );
                     }}
                 />
+                <View style={styles.container}>
+                    <Text style={styles.title}>Enter Preference</Text>
+                    <TextInput style={styles.input} value={preference} onChangeText={text => setPreference(text)}/>
+                    <Button title="Submit" onPress={() => addItem(preference)} />
+                </View>
+
             </View>
         </ScrollView>
     )
@@ -116,7 +116,15 @@ const styles = StyleSheet.create({
     },
     icon: {
         fontSize: 24,
+    },
+    input: {
+        fontSize: 18,
+        borderWidth: 1,
+        borderColor: 'black',
+        marginBottom: 15,
+        padding: 5,
+        margin: 5
     }
 });
 
-export default CreatePreferencesScreen;
+export default CreatePreferenceScreen;
