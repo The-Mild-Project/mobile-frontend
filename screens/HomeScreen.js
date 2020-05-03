@@ -1,34 +1,27 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
+import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Button } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
 import {googleLogin} from './LoginPage'
 
-
-
-/* navigation */
-import { createStackNavigator, createAppContainer, NavigationContainer  } from 'react-navigation';
-
-// import { MonoText } from '../components/StyledText';
 
 export default function HomeScreen({navigation}) {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
 
-        <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
+        {/*<View style={styles.getStartedContainer}>*/}
+        {/*  <DevelopmentModeNotice />*/}
 
-          <Text style={styles.getStartedText}>Open up the code: </Text>
+        {/*  <Text style={styles.getStartedText}>Open up the code: </Text>*/}
 
-        </View>
+        {/*</View>*/}
 
         <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Button title="Sign up or Log in with Google" onPress={() => navigation.navigate('Login')} />
-            <Button title="Restaurants" onPress={() => navigation.navigate('Restaurants')} />
-
-          </TouchableOpacity>
+            <View style={{margin:10}}>
+              <Button title="Sign up or Log in with Google" onPress={() => navigation.navigate('Login')} />
+            </View>
         </View>
       </ScrollView>
 
@@ -42,9 +35,6 @@ export default function HomeScreen({navigation}) {
   );
 }
 
-HomeScreen.navigationOptions = {
-  header: null,
-};
 
 function DevelopmentModeNotice() {
   if (__DEV__) {
@@ -84,13 +74,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
-  },
+
   contentContainer: {
     paddingTop: 30,
   },

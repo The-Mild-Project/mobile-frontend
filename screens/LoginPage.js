@@ -20,16 +20,9 @@ async function googleLogin(navigation) {
     });
 
     if (result.type === 'success') {
-        // let userInfoResponse = await fetch('https://www.googleapis.com/userinfo/v2/me', {
-        //     headers: { Authorization: `Bearer ${result.accessToken}`},
-        // });
-        /* `accessToken` is now valid and can be used to get data from the Google API with HTTP requests */
-        // store token
-
         const retrieveItem = async (key) => {
             try {
                 const retrievedItem = await SecureStore.getItemAsync(key);
-                console.log('item', retrievedItem);
             } catch (error) {
                 console.log(error.message);
             }
@@ -64,23 +57,10 @@ async function passTokenToBackend(result) {
         }
     }).then(function (response) {
         // log user in
-        console.log(response)
     }).catch(function (error) {
         // send user back to login page and clear local storage
         console.log(error);
     })
 }
-
-
-
-
-const responseGoogle = (response) => {
-    console.log(response);
-
-};
-
-const MyLoginPage = ({ theme }) => {
-
-};
 
 export default LoginPage;
