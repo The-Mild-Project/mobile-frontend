@@ -16,16 +16,18 @@ function LoggedInScreen({route, navigation}) {
     return (
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <View style={styles.container}>
-                <Text>Hi {name}, you're logged in</Text>
-                <Button title="View Preferences" onPress={() => navigation.navigate('PreferencesScreen', {"name": name, "email": email})} />
-                <Button title="View Restaurants" onPress={() => navigation.navigate('RestaurantsScreen', {"name": name, "email": email})} />
+                <Text>Hi {name}, welcome to the Food App</Text>
+                <Button title="View and Add Food Preferences" onPress={() => navigation.navigate('Preferences', {"name": name, "email": email})} />
+                <Button title="Browse Restaurants" onPress={() => navigation.navigate('Restaurants', {"name": name, "email": email})} />
             </View>
         </ScrollView>
     );
 }
 
-LoggedInScreen.navigationOptions = {
-    header: null,
+LoggedInScreen.navigationOptions = () => {
+    return {
+        headerRight: "hello"
+    }
 };
 
 const styles = StyleSheet.create({

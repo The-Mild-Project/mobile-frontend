@@ -25,8 +25,8 @@ export default function HomeScreen({navigation}) {
 
         <View style={styles.helpContainer}>
           <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Button title="Sign up or Log in with Google" onPress={() => navigation.navigate('LoginPage')} />
-            <Button title="Restaurants" onPress={() => navigation.navigate('RestaurantsScreen')} />
+            <Button title="Sign up or Log in with Google" onPress={() => navigation.navigate('Login')} />
+            <Button title="Restaurants" onPress={() => navigation.navigate('Restaurants')} />
 
           </TouchableOpacity>
         </View>

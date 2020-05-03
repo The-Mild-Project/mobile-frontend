@@ -6,6 +6,7 @@ import preferences from "../api/preferences";
 import PreferencesList from "../components/PreferencesList";
 import {Feather} from "@expo/vector-icons";
 import axios from 'axios';
+import LoggedInScreen from "./LoggedInScreen";
 
 
 const PreferencesScreen =  ({navigation}) => {
@@ -84,10 +85,16 @@ const PreferencesScreen =  ({navigation}) => {
                             );
                         }}
                     />
-                <Button title="Add a Preference" onPress={() => navigation.navigate('CreatePreferenceScreen', {"pastResults": results})} />
+                <Button title="Add a Preference" onPress={() => navigation.navigate('Create Preference', {"pastResults": results})} />
             </View>
         </ScrollView>
     )
+};
+
+PreferencesScreen.navigationOptions = () => {
+    return {
+        headerRight: <Feather name="plus" size={30} />
+    };
 };
 
 const styles = StyleSheet.create({

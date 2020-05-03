@@ -52,7 +52,7 @@ async function googleLogin(navigation) {
         await retrieveItem("email");
 
         await passTokenToBackend(result);
-        navigation.navigate('LoggedInScreen', {"name": result.user.name, "email": result.user.email})
+        navigation.navigate('Home', {"name": result.user.name, "email": result.user.email})
     }
 }
 
