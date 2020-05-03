@@ -3,12 +3,10 @@ import { FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Bu
 import {ScrollView} from "react-native-gesture-handler";
 import * as SecureStore from "expo-secure-store";
 import preferences from "../api/preferences";
-import PreferencesList from "../components/PreferencesList";
 import {Feather} from "@expo/vector-icons";
-import axios from 'axios';
 
 
-const PreferencesScreen =  ({navigation}) => {
+const CreatePreferencesScreen =  ({navigation}) => {
     let [results, setResults] = useState([]);
     let [food, setFood] = useState([]);
     // get from localstorage
@@ -33,14 +31,14 @@ const PreferencesScreen =  ({navigation}) => {
         let jsonFood = JSON.stringify(newFood);
 
         retrieveItem("googleId").then(async (googleId) => {
-             try {
+            try {
                 const response = await preferences.post('/set',
                     jsonFood
                     , {
                         headers: {
                             googleId: googleId
                         },
-                });
+                    });
             } catch (err) {
                 console.log("Error:", err);
             }
@@ -72,19 +70,19 @@ const PreferencesScreen =  ({navigation}) => {
         <ScrollView style={styles.container}>
             <View style={styles.container}>
                 <Text style={styles.name}>Preferences</Text>
-                    <FlatList
-                        data={results.food}
-                        renderItem={({item, index}) => {
-                            return (
-                                <View style={styles.row}>
-                                    <Text style={styles.title}>{item}</Text>
-                                    <TouchableOpacity onPress={() => deleteItem(item, index)}>
-                                        <Feather style={styles.icon} name="trash" />
-                                    </TouchableOpacity>
-                                </View>
-                            );
-                        }}
-                    />
+                <FlatList
+                    data={results.food}
+                    renderItem={({item, index}) => {
+                        return (
+                            <View style={styles.row}>
+                                <Text style={styles.title}>{item}</Text>
+                                <TouchableOpacity onPress={() => deleteItem(item, index)}>
+                                    <Feather style={styles.icon} name="trash" />
+                                </TouchableOpacity>
+                            </View>
+                        );
+                    }}
+                />
             </View>
         </ScrollView>
     )
@@ -121,4 +119,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default PreferencesScreen;
+export default CreatePreferencesScreen;

@@ -1,8 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import {Feather} from '@expo/vector-icons'
+import preferences from "../api/preferences";
+import * as SecureStore from "expo-secure-store";
 
-const PreferencesList = ({title, results, navigation}) => {
+const PreferencesList = ({title, results}) => {
+
+
     return (
         <View>
         <Text>{title}</Text>
@@ -20,7 +24,7 @@ const PreferencesList = ({title, results, navigation}) => {
             }}
         />
     </View>
-    )
+    );
 };
 
 const styles = StyleSheet.create({
