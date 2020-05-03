@@ -11,23 +11,24 @@ import RestaurantsScreen from "./RestaurantsScreen";
 
 function LoggedInScreen({route, navigation}) {
     let name = route.params.name;
+    let email = route.params.email;
+
     return (
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <View style={styles.container}>
-                    <Text>Hi {name}, you're logged in</Text>
-                <Button title="View Restaurants" onPress={() => navigation.navigate('RestaurantsScreen', {"name": name})} />
+                <Text>Hi {name}, welcome to the Food App</Text>
+                <Button title="View and Add Food Preferences" onPress={() => navigation.navigate('Preferences', {"name": name, "email": email})} />
+                <Button title="Browse Restaurants" onPress={() => navigation.navigate('Restaurants', {"name": name, "email": email})} />
             </View>
         </ScrollView>
     );
 }
 
-LoggedInScreen.navigationOptions = {
-    header: null,
+LoggedInScreen.navigationOptions = () => {
+    return {
+        headerRight: "hello"
+    }
 };
-
-async function asyncGetDataHelper(key) {
-    return await AsyncStorage.getItem(key);
-}
 
 const styles = StyleSheet.create({
     container: {

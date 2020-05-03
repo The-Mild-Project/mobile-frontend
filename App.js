@@ -7,18 +7,24 @@ import LoginPage from "./screens/LoginPage";
 import LoggedInScreen from "./screens/LoggedInScreen";
 import RestaurantsScreen from "./screens/RestaurantsScreen";
 import ResultsShowScreen from "./screens/ResultsShowScreen";
+import PreferencesScreen from "./screens/PreferencesScreen";
+import CreatePreferenceScreen from "./screens/CreatePreferenceScreen";
+
+
 
 const Stack = createStackNavigator();
 
 function App() {
   return (
       <NavigationContainer>
-        <Stack.Navigator>
-            <Stack.Screen name="HomeScreen" component={HomeScreen} />
-            <Stack.Screen name="LoginPage" component={LoginPage} />
-            <Stack.Screen name="LoggedInScreen" component={LoggedInScreen} />
-            <Stack.Screen name="RestaurantsScreen" component={RestaurantsScreen} />
-            <Stack.Screen name="ResultsShowScreen" component={ResultsShowScreen} />
+        <Stack.Navigator initialRouteName="Welcome">
+            <Stack.Screen name="Welcome" component={HomeScreen} />
+            <Stack.Screen name="Login" component={LoginPage} />
+            <Stack.Screen name="Home" component={LoggedInScreen} />
+            <Stack.Screen name="Restaurants" component={RestaurantsScreen} />
+            <Stack.Screen name="Restaurant" component={ResultsShowScreen} />
+            <Stack.Screen name="Preferences" component={PreferencesScreen} />
+            <Stack.Screen options={{ title: 'Add a Food Preference' }} name="Create Preference" component={CreatePreferenceScreen} />
         </Stack.Navigator>
       </NavigationContainer>
   );
