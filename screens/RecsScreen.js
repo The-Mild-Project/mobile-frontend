@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {ScrollView} from "react-native-gesture-handler";
 import * as SecureStore from "expo-secure-store";
 import preferences from "../api/preferences";
@@ -7,7 +7,7 @@ import { Button } from 'react-native-elements';
 import {Feather} from "@expo/vector-icons";
 
 
-const PreferencesScreen =  ({navigation}) => {
+const RecsScreen =  ({navigation}) => {
     let [results, setResults] = useState([]);
     let [food, setFood] = useState([]);
     // get from localstorage
@@ -31,14 +31,14 @@ const PreferencesScreen =  ({navigation}) => {
         let jsonFood = JSON.stringify(newFood);
 
         retrieveItem("googleId").then(async (googleId) => {
-             try {
+            try {
                 const response = await preferences.post('/set',
                     jsonFood
                     , {
                         headers: {
                             googleId: googleId
                         },
-                });
+                    });
             } catch (err) {
                 console.log("Error:", err);
             }
@@ -70,26 +70,26 @@ const PreferencesScreen =  ({navigation}) => {
         <ScrollView style={styles.container}>
             <View style={styles.container}>
                 <Text style={styles.name}>Food Preferences</Text>
-                    <FlatList
-                        data={results.food}
-                        renderItem={({item, index}) => {
-                            return (
-                                <View style={styles.row}>
-                                    <Text style={styles.title}>{item}</Text>
-                                    <TouchableOpacity onPress={() => deleteItem(item, index)}>
-                                        <Feather style={styles.icon} name="trash" />
-                                    </TouchableOpacity>
-                                </View>
-                            );
-                        }}
-                    />
+                <FlatList
+                    data={results.food}
+                    renderItem={({item, index}) => {
+                        return (
+                            <View style={styles.row}>
+                                <Text style={styles.title}>{item}</Text>
+                                <TouchableOpacity onPress={() => deleteItem(item, index)}>
+                                    <Feather style={styles.icon} name="trash" />
+                                </TouchableOpacity>
+                            </View>
+                        );
+                    }}
+                />
                 <Button title="Add a Preference" onPress={() => navigation.navigate('Create Preference', {"pastResults": results})} />
             </View>
         </ScrollView>
     )
 };
 
-PreferencesScreen.navigationOptions = () => {
+RecsScreen.navigationOptions = () => {
     return {
         headerRight: <Feather name="plus" size={30} />
     };
@@ -129,4 +129,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default PreferencesScreen;
+export default RecsScreen;

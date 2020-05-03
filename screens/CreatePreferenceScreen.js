@@ -124,6 +124,9 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         padding: 5,
         margin: 5
+    },
+    contentContainer: {
+        paddingTop: 30,
     }
 });
 

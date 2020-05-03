@@ -5,13 +5,10 @@ import useRestaurants from "../hooks/useRestaurants";
 import ResultsList from "../components/ResultsList";
 import SearchBar from "../components/SearchBar";
 
-const RestaurantsScreen = ({navigation}) => {
+const SettingsScreen = ({navigation}) => {
     const [term, setTerm] = useState('');
     // returns an array
     const [searchApi, results] = useRestaurants();
-
-    // so we can filter by type of food later
-
 
 
     return (
@@ -42,4 +39,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default RestaurantsScreen;
+export default SettingsScreen;
