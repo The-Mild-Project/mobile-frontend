@@ -12,12 +12,9 @@ import RecsScreen from "./screens/RecsScreen";
 import { MaterialIcons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
 const Stack = createStackNavigator();
-// const Tab = createBottomTabNavigator();
-// const Drawer = createDrawerNavigator();
 
 
 function StackNav() {
