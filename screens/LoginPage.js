@@ -39,7 +39,6 @@ async function googleLogin(navigation) {
         await setItem("googleId", result.idToken);
         await setItem("name", result.user.name);
         await setItem("email", result.user.email);
-
         await retrieveItem("googleId");
         await retrieveItem("name");
         await retrieveItem("email");

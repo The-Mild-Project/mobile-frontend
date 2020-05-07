@@ -7,7 +7,9 @@ import { Button } from 'react-native-elements';
 import {Feather} from "@expo/vector-icons";
 
 
-const PreferencesScreen =  ({navigation}) => {
+const PreferencesScreen =  ({navigation, route}) => {
+    // this is bad, but makes more sense than use effect
+    let [count, setCount] = useState(0)
     let [results, setResults] = useState([]);
     let [food, setFood] = useState([]);
     // get from localstorage
@@ -22,12 +24,10 @@ const PreferencesScreen =  ({navigation}) => {
     };
 
     function deleteItem (item, index) {
-        console.log(results);
         let newFood = results.food.filter(toRemove => item !== toRemove);
         let newState = {"food": newFood};
         setResults(newState);
         setFood(newFood);
-        console.log(newFood);
         let jsonFood = JSON.stringify(newFood);
 
         retrieveItem("googleId").then(async (googleId) => {
@@ -44,6 +44,19 @@ const PreferencesScreen =  ({navigation}) => {
             }
         });
     };
+
+        retrieveItem("googleId").then(async (googleId) => {
+            try {
+                const response = await preferences.get('/get', {
+                    headers: {
+                        googleId: googleId
+                    }
+                });
+                setResults(response.data);
+            } catch (err) {
+                console.log("Error:", err);
+            }
+        });
 
     /* this will execute only once on screen load */
     useEffect(() => {
@@ -83,7 +96,7 @@ const PreferencesScreen =  ({navigation}) => {
                             );
                         }}
                     />
-                <Button title="Add a Preference" onPress={() => navigation.navigate('Create Preference', {"pastResults": results})} />
+                <Button title="Add a Preference" onPress={() => {setCount(0); navigation.navigate('Create Preference', {"pastResults": results})}} />
             </View>
         </ScrollView>
     )

@@ -25,8 +25,9 @@ const CreatePreferenceScreen =  ({route, navigation}) => {
         let newState = {"food": newFood};
         setResults(newState);
         setFood(newFood);
-        console.log(newFood);
         let jsonFood = JSON.stringify(newFood);
+        console.log("results");
+        console.log(results);
         retrieveItem("googleId").then(async (googleId) => {
             try {
                 const response = await preferences.post('/set',
@@ -80,7 +81,7 @@ const CreatePreferenceScreen =  ({route, navigation}) => {
                 <View style={styles.container}>
                     <Text style={styles.title}>Enter Preference</Text>
                     <TextInput style={styles.input} value={preference} onChangeText={text => setPreference(text)}/>
-                    <Button title="Submit" onPress={() => addItem(preference)} />
+                    <Button title="Submit" onPress={() => {addItem(preference); navigation.navigate('Preferences', {"results": results})}} />
                 </View>
 
             </View>

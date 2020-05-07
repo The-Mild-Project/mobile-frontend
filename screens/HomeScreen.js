@@ -25,12 +25,12 @@ export default function HomeScreen({navigation}) {
         </View>
       </ScrollView>
 
-      <View style={styles.tabBarInfoContainer}>
-        <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-        <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <Text style={styles.codeHighlightText}>navigation/BottomTabNavigator.js</Text>
-        </View>
-      </View>
+      {/*<View style={styles.tabBarInfoContainer}>*/}
+      {/*  <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>*/}
+      {/*  <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>*/}
+      {/*    <Text style={styles.codeHighlightText}>navigation/BottomTabNavigator.js</Text>*/}
+      {/*  </View>*/}
+      {/*</View>*/}
     </View>
   );
 }
