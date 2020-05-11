@@ -2,14 +2,25 @@ import * as React from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Button } from 'react-native-elements';
+import Storage from '../utility/Storage'
 
 
 
 /* navigation */
 import { createStackNavigator, createAppContainer, NavigationContainer  } from 'react-navigation';
 import RestaurantsScreen from "./RestaurantsScreen";
+import * as SecureStore from "expo-secure-store";
 
 function LoggedInScreen({route, navigation}) {
+    let storage = new Storage();
+
+    let preference = "";
+    storage.retrieve("preference").then((item) =>  {
+       preference = item;
+       console.log(preference)
+    });
+    console.log('preference in mai');
+    console.log(preference);
     let name = route.params.name;
     let email = route.params.email;
 

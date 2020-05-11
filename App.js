@@ -38,7 +38,6 @@ function StackNav() {
             <Stack.Screen name="Preferences" component={PreferencesScreen} />
             <Stack.Screen options={{ title: 'Add a Food Preference' }} name="Create Preference" component={CreatePreferenceScreen} />
             <Stack.Screen name="Recs" options={{ title: 'Recommendations' }} component={RecsScreen} />
-            {/*<Stack.Screen name="Settings" component={SettingsScreen} />*/}
         </Stack.Navigator>
     )
 }

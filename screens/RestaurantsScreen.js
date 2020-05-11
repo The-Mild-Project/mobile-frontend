@@ -5,17 +5,11 @@ import useRestaurants from "../hooks/useRestaurants";
 import ResultsList from "../components/ResultsList";
 import SearchBar from "../components/SearchBar";
 
-const RestaurantsScreen = ({navigation}) => {
+const RestaurantsScreen = ({navigation, route}) => {
     const [term, setTerm] = useState('');
     // returns an array
     const [searchApi, results] = useRestaurants();
-
-    // so we can filter by type of food later
-
-
-
     return (
-
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <SearchBar term={term} onTermChange={setTerm} onTermSubmit={() => searchApi(term)}/>
             <ResultsList navigation={navigation} results={results}/>

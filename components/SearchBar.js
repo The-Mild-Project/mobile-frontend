@@ -4,10 +4,9 @@ import { TextInput, StyleSheet, View } from 'react-native';
 const SearchBar = ({term, onTermChange, onTermSubmit}) => {
     return (
         <View style={styles.backgroundStyle}>
-
             <TextInput
                 autoCapitalize="none"
-                autoCorrect={true}
+                autoCorrect={false}
                 style={styles.inputStyle}
                 placeholder="Search Food"
                 value={term}
