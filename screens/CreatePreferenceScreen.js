@@ -13,8 +13,8 @@ const CreatePreferenceScreen =  ({route, navigation}) => {
     // get from localstorage
     let storage = new Storage();
 
-    function addItem (item) {
-
+    // the callback argument makes it so it will respond correctly to the call being made within the screen
+    function addItem (item, callback) {
         const newFood = results.food.concat(item);
         let newState = {"food": newFood};
         setResults(newState);
@@ -23,18 +23,19 @@ const CreatePreferenceScreen =  ({route, navigation}) => {
         let jsonFood = JSON.stringify(newFood);
         storage.retrieve("googleId").then(async (googleId) => {
             try {
-                const response = await preferences.post('/set',
+                await preferences.post('/set',
                     jsonFood
                     , {
                         headers: {
                             googleId: googleId
                         },
                     });
+                await storage.add("preference", item);
+                callback();
             } catch (err) {
                 console.log("Error:", err);
             }
         });
-        storage.add("preference", item);
     }
 
     /* this will execute only once on screen load */
@@ -60,7 +61,6 @@ const CreatePreferenceScreen =  ({route, navigation}) => {
     return (
         <ScrollView style={styles.container}>
             <View style={styles.container}>
-                <Text style={styles.name}>Preferences</Text>
                 <FlatList
                     data={results.food}
                     renderItem={({item, index}) => {
@@ -74,7 +74,11 @@ const CreatePreferenceScreen =  ({route, navigation}) => {
                 <View style={styles.container}>
                     <Text style={styles.title}>Enter Preference</Text>
                     <TextInput style={styles.input} value={preference} onChangeText={text => setPreference(text)}/>
-                    <Button title="Submit" onPress={() => addItem(preference)} />
+                    <Button title="Submit" onPress={() => {
+                        addItem(preference, () => {
+                            navigation.navigate('Preferences');
+                        });
+                    }}/>
                 </View>
 
             </View>
