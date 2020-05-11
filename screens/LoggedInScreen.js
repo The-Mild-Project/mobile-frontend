@@ -1,15 +1,14 @@
 import * as React from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Button } from 'react-native-elements';
 import Storage from '../utility/Storage'
+import {Feather} from '@expo/vector-icons'
 
 
 
 /* navigation */
 import { createStackNavigator, createAppContainer, NavigationContainer  } from 'react-navigation';
-import RestaurantsScreen from "./RestaurantsScreen";
-import * as SecureStore from "expo-secure-store";
 
 function LoggedInScreen({route, navigation}) {
     let storage = new Storage();
@@ -19,8 +18,7 @@ function LoggedInScreen({route, navigation}) {
        preference = item;
        console.log(preference)
     });
-    console.log('preference in mai');
-    console.log(preference);
+
     let name = route.params.name;
     let email = route.params.email;
 
@@ -31,14 +29,15 @@ function LoggedInScreen({route, navigation}) {
                 <View style={styles.buttonContainer}>
                     <Button style={styles.smallCenterButton} title="Browse Restaurants" onPress={() => navigation.navigate('Restaurants', {"name": name, "email": email})} />
                     <Button style={styles.smallCenterButton} title="View Recommendations" onPress={() => navigation.navigate('Recs', {"name": name, "email": email})} />
-                    <Button style={styles.smallCenterButton} title="Configure Food Preferences" onPress={() => navigation.navigate('Preferences', {"name": name, "email": email})} />
+                    <Button style={styles.smallCenterButton} title="Preferences" onPress={() => navigation.navigate('Preferences', {"name": name, "email": email})} />
+                    <Button style={styles.smallCenterButton} title="Settings" onPress={() => navigation.navigate('Settings', {"name": name, "email": email})} />
                 </View>
             </View>
         </ScrollView>
     );
 }
 
-LoggedInScreen.navigationOptions = () => {
+LoggedInScreen.navigationOptions = ( {navigation} ) => {
 
 };
 
@@ -66,6 +65,9 @@ const styles = StyleSheet.create({
         paddingTop: 15,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    icon: {
+        color: 'black',
     }
 });
 

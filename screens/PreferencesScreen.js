@@ -13,6 +13,8 @@ const PreferencesScreen =  ({navigation}) => {
     // get from localstorage
     let storage = new Storage();
 
+    // want to use
+
     function deleteItem (item) {
         // filter out the toRemove food
         let newFood = results.food.filter(toRemove => item !== toRemove);
@@ -53,10 +55,8 @@ const PreferencesScreen =  ({navigation}) => {
     }, []);
 
     return (
-
         <ScrollView style={styles.container}>
             <View style={styles.container}>
-                <Text style={styles.name}>Food Preferences</Text>
                     <FlatList
                         data={results.food}
                         renderItem={({item, index}) => {
@@ -76,11 +76,6 @@ const PreferencesScreen =  ({navigation}) => {
     )
 };
 
-PreferencesScreen.navigationOptions = () => {
-    return {
-        headerRight: <Feather name="plus" size={30} />
-    };
-};
 
 const styles = StyleSheet.create({
     container: {

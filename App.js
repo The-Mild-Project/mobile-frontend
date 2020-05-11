@@ -28,16 +28,19 @@ function StackNav() {
                 headerTitleStyle: {
                     fontWeight: 'bold',
                 },
+
             }}
             initialRouteName="Welcome">
             <Stack.Screen name="Welcome" component={HomeScreen} />
             <Stack.Screen name="Login" component={LoginPage} />
-            <Stack.Screen name="Home" component={LoggedInScreen} />
+            <Stack.Screen options={() => ({ headerLeft: ""})}
+                          name="Home" component={LoggedInScreen} />
             <Stack.Screen name="Restaurants" component={RestaurantsScreen} />
             <Stack.Screen name="Restaurant" component={ResultsShowScreen} />
             <Stack.Screen name="Preferences" component={PreferencesScreen} />
             <Stack.Screen options={{ title: 'Add a Food Preference' }} name="Create Preference" component={CreatePreferenceScreen} />
             <Stack.Screen name="Recs" options={{ title: 'Recommendations' }} component={RecsScreen} />
+            <Stack.Screen name="Settings" options={{ title: 'Settings' }} component={SettingsScreen} />
         </Stack.Navigator>
     )
 }

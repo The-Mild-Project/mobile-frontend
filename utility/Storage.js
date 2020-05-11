@@ -28,6 +28,17 @@ class Storage {
         return setItem(key, value)
     }
 
+    remove(key) {
+        const removeItem = async (key) => {
+            try {
+                await SecureStore.deleteItemAsync(key);
+            } catch(e) {
+                console.log(e);
+            }
+        };
+        return removeItem(key);
+    }
+
 }
 
 export default Storage;
