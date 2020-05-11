@@ -1,36 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import {FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {ScrollView} from "react-native-gesture-handler";
-import * as SecureStore from "expo-secure-store";
 import preferences from "../api/preferences";
 import { Button } from 'react-native-elements';
 import {Feather} from "@expo/vector-icons";
+import Storage from '../utility/Storage'
 
 
 const PreferencesScreen =  ({navigation}) => {
     let [results, setResults] = useState([]);
     let [food, setFood] = useState([]);
     // get from localstorage
-    const retrieveItem = async (key) => {
-        try {
-            const retrievedItem = await SecureStore.getItemAsync(key);
-            console.log('item', retrievedItem);
-            return retrievedItem;
-        } catch (error) {
-            console.log(error.message);
-        }
-    };
+    let storage = new Storage();
 
-    function deleteItem (item, index) {
-        console.log(results);
+    function deleteItem (item) {
+        // filter out the toRemove food
         let newFood = results.food.filter(toRemove => item !== toRemove);
         let newState = {"food": newFood};
         setResults(newState);
         setFood(newFood);
-        console.log(newFood);
         let jsonFood = JSON.stringify(newFood);
 
-        retrieveItem("googleId").then(async (googleId) => {
+        storage.retrieve("googleId").then(async (googleId) => {
              try {
                 const response = await preferences.post('/set',
                     jsonFood
@@ -43,11 +34,11 @@ const PreferencesScreen =  ({navigation}) => {
                 console.log("Error:", err);
             }
         });
-    };
+    }
 
     /* this will execute only once on screen load */
     useEffect(() => {
-        retrieveItem("googleId").then(async (googleId) => {
+        storage.retrieve("googleId").then(async (googleId) => {
             try {
                 const response = await preferences.get('/get', {
                     headers: {
@@ -60,10 +51,6 @@ const PreferencesScreen =  ({navigation}) => {
             }
         });
     }, []);
-
-
-
-    // so we can filter by type of food later
 
     return (
 
@@ -83,7 +70,7 @@ const PreferencesScreen =  ({navigation}) => {
                             );
                         }}
                     />
-                <Button title="Add a Preference" onPress={() => navigation.navigate('Create Preference', {"pastResults": results})} />
+                <Button title="Add a Preference" onPress={() => navigation.navigate('Create Preference', {"results": results})} />
             </View>
         </ScrollView>
     )

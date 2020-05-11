@@ -11,7 +11,7 @@ export default () => {
                     zip:'94010',
                     type: type
                 }
-                });
+            });
             console.log("search API called");
             console.log(response);
             setResults(response.data);

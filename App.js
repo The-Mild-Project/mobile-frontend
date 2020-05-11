@@ -12,12 +12,9 @@ import RecsScreen from "./screens/RecsScreen";
 import { MaterialIcons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
 const Stack = createStackNavigator();
-// const Tab = createBottomTabNavigator();
-// const Drawer = createDrawerNavigator();
 
 
 function StackNav() {
@@ -41,7 +38,6 @@ function StackNav() {
             <Stack.Screen name="Preferences" component={PreferencesScreen} />
             <Stack.Screen options={{ title: 'Add a Food Preference' }} name="Create Preference" component={CreatePreferenceScreen} />
             <Stack.Screen name="Recs" options={{ title: 'Recommendations' }} component={RecsScreen} />
-            {/*<Stack.Screen name="Settings" component={SettingsScreen} />*/}
         </Stack.Navigator>
     )
 }

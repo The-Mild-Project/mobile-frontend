@@ -1,33 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button, TextInput} from 'react-native';
+import { FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View, TextInput} from 'react-native';
+import { Button } from 'react-native-elements';
 import {ScrollView} from "react-native-gesture-handler";
-import * as SecureStore from "expo-secure-store";
 import preferences from "../api/preferences";
+import Storage from '../utility/Storage';
 
 
 const CreatePreferenceScreen =  ({route, navigation}) => {
-    let [results, setResults] = useState([route.params.pastResults]);
-    let [food, setFood] = useState([route.params.pastResults.food]);
+    let [results, setResults] = useState([route.params.results]);
+    let [food, setFood] = useState([route.params.results.food]);
     let [preference, setPreference] = useState("");
     // get from localstorage
-    const retrieveItem = async (key) => {
-        try {
-            const retrievedItem = await SecureStore.getItemAsync(key);
-            console.log('item', retrievedItem);
-            return retrievedItem;
-        } catch (error) {
-            console.log(error.message);
-        }
-    };
+    let storage = new Storage();
 
     function addItem (item) {
+
         const newFood = results.food.concat(item);
         let newState = {"food": newFood};
         setResults(newState);
         setFood(newFood);
         console.log(newFood);
         let jsonFood = JSON.stringify(newFood);
-        retrieveItem("googleId").then(async (googleId) => {
+        storage.retrieve("googleId").then(async (googleId) => {
             try {
                 const response = await preferences.post('/set',
                     jsonFood
@@ -40,11 +34,12 @@ const CreatePreferenceScreen =  ({route, navigation}) => {
                 console.log("Error:", err);
             }
         });
-    };
+        storage.add("preference", item);
+    }
 
     /* this will execute only once on screen load */
     useEffect(() => {
-        retrieveItem("googleId").then(async (googleId) => {
+        storage.retrieve("googleId").then(async (googleId) => {
             try {
                 const response = await preferences.get('/get', {
                     headers: {
@@ -63,7 +58,6 @@ const CreatePreferenceScreen =  ({route, navigation}) => {
     // so we can filter by type of food later
 
     return (
-
         <ScrollView style={styles.container}>
             <View style={styles.container}>
                 <Text style={styles.name}>Preferences</Text>

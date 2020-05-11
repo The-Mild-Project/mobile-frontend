@@ -5,6 +5,7 @@ import axios from 'axios'
 import CONFIG from '../config.json';
 import * as SecureStore from 'expo-secure-store';
 // store token
+import Storage from '../utility/Storage';
 
 const LoginPage = ({navigation}) => {
     googleLogin(navigation);
@@ -20,29 +21,14 @@ async function googleLogin(navigation) {
     });
 
     if (result.type === 'success') {
-        const retrieveItem = async (key) => {
-            try {
-                const retrievedItem = await SecureStore.getItemAsync(key);
-            } catch (error) {
-                console.log(error.message);
-            }
-        };
+        let storage = new Storage();
 
-        const setItem = async (key, value) => {
-            try {
-                await SecureStore.setItemAsync(key, value);
-            } catch(e) {
-                console.log(e);
-            }
-        };
-
-        await setItem("googleId", result.idToken);
-        await setItem("name", result.user.name);
-        await setItem("email", result.user.email);
-
-        await retrieveItem("googleId");
-        await retrieveItem("name");
-        await retrieveItem("email");
+        await storage.add("googleId", result.idToken);
+        await storage.add("name", result.user.name);
+        await storage.add("email", result.user.email);
+        await storage.retrieve("googleId");
+        await storage.retrieve("name");
+        await storage.retrieve("email");
 
         await passTokenToBackend(result);
         navigation.navigate('Home', {"name": result.user.name, "email": result.user.email})
