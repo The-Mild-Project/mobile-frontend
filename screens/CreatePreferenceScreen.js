@@ -7,8 +7,8 @@ import Storage from '../utility/Storage';
 
 
 const CreatePreferenceScreen =  ({route, navigation}) => {
-    let [results, setResults] = useState([route.params.results]);
-    let [food, setFood] = useState([route.params.results.food]);
+    let [results, setResults] = useState([]);
+    let [food, setFood] = useState([]);
     let [preference, setPreference] = useState("");
     // get from localstorage
     let storage = new Storage();
@@ -52,6 +52,10 @@ const CreatePreferenceScreen =  ({route, navigation}) => {
                 console.log("Error:", err);
             }
         });
+        if (route !== undefined) {
+            setResults(route.params.results);
+            setFood(route.params.results.food);
+        }
     }, []);
 
 
