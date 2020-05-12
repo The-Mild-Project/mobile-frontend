@@ -15,6 +15,7 @@ web-report/
 
 # config
 config.json
+.env
 
 #idea
 .idea/*

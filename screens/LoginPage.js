@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button, AsyncStorage } from 'react-native';
 import * as Google from 'expo-google-app-auth';
-import axios from 'axios'
+import axios from 'axios';
 import CONFIG from '../config.json';
-import * as SecureStore from 'expo-secure-store';
 // store token
 import Storage from '../utility/Storage';
 
