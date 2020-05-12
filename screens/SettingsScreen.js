@@ -8,8 +8,13 @@ import Storage from '../utility/Storage';
 
 const SettingsScreen = ({route, navigation}) => {
     const [term, setTerm] = useState('');
-    const name = route.params.name;
-    const email = route.params.email;
+    let name;
+    let email;
+    if (route !== undefined ) {
+        name = route.params.name;
+        email = route.params.email;
+    }
+
     const storage = new Storage();
 
     const logout = () => {

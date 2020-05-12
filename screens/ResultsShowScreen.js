@@ -2,7 +2,10 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 const ResultsShowScreen = ({navigation, route}) => {
-    const name = route.params.name
+    let name;
+    if (route !== undefined) {
+        name = route.params.name;
+    }
     return (
         <View>
             <Text>{name}</Text>

@@ -12,15 +12,13 @@ import { createStackNavigator, createAppContainer, NavigationContainer  } from '
 
 function LoggedInScreen({route, navigation}) {
     let storage = new Storage();
+    let name;
+    let email;
 
-    let preference = "";
-    storage.retrieve("preference").then((item) =>  {
-       preference = item;
-       console.log(preference)
-    });
-
-    let name = route.params.name;
-    let email = route.params.email;
+    if (route !== undefined ) {
+        name = route.params.name;
+        email = route.params.email;
+    }
 
     return (
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
