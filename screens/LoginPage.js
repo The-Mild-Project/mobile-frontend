@@ -5,6 +5,7 @@ import axios from 'axios';
 import CONFIG from '../config.json';
 // store token
 import Storage from '../utility/Storage';
+import { IOSCLIENTID, ANDROIDCLIENTID } from 'react-native-dotenv';
 
 const LoginPage = ({navigation}) => {
     googleLogin(navigation);
@@ -15,8 +16,8 @@ const LoginPage = ({navigation}) => {
 async function googleLogin(navigation) {
     // wait for access token from Expo's Google API
     const result = await Google.logInAsync({
-        iosClientId: CONFIG.IOSCLIENTID,
-        androidClientId: CONFIG.ANDROIDCLIENTID
+        iosClientId: IOSCLIENTID,
+        androidClientId: ANDROIDCLIENTID
     });
 
     if (result.type === 'success') {
