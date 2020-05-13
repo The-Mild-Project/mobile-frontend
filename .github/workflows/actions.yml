@@ -20,4 +20,4 @@ jobs:
           expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
       - run: yarn install
       - run: npx jest --ci
-      - run: expo build:android -t apk
+      - run: expo publish
