@@ -26,6 +26,10 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.themildproject.foodieapp",
+      "versionCode": 1
     }
   }
 }
