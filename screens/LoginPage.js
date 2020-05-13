@@ -5,19 +5,18 @@ import axios from 'axios';
 import CONFIG from '../config.json';
 // store token
 import Storage from '../utility/Storage';
-import { IOSCLIENTID, ANDROIDCLIENTID } from 'react-native-dotenv';
+// import { IOSCLIENTID, ANDROIDCLIENTID } from 'react-native-dotenv';
 
 const LoginPage = ({navigation}) => {
     googleLogin(navigation);
     return null;
 };
 
-
 async function googleLogin(navigation) {
     // wait for access token from Expo's Google API
     const result = await Google.logInAsync({
-        iosClientId: IOSCLIENTID,
-        androidClientId: ANDROIDCLIENTID
+        iosClientId: process.env.IOSCLIENTID,
+        androidClientId: process.env.ANDROIDCLIENTID
     });
 
     if (result.type === 'success') {
