@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button, AsyncStorage } from 'react-native';
 import * as Google from 'expo-google-app-auth';
 import axios from 'axios';
-import CONFIG from '../config.json';
+//import CONFIG from '../config.json';
 // store token
 import Storage from '../utility/Storage';
 // import { IOSCLIENTID, ANDROIDCLIENTID } from 'react-native-dotenv';
