@@ -4,6 +4,7 @@ import yelp from "../api/yelp";
 export default () => {
     const [results, setResults] = useState([]);
 
+
     const searchApi = async (type) => {
         try {
             const response = await yelp.get('', {

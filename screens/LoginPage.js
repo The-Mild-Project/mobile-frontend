@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button, AsyncStorage } from 'react-native';
 import * as Google from 'expo-google-app-auth';
 import axios from 'axios';
-//import CONFIG from '../config.json';
+import CONFIG from '../config.json';
 // store token
 import Storage from '../utility/Storage';
 // import { IOSCLIENTID, ANDROIDCLIENTID } from 'react-native-dotenv';
@@ -12,11 +12,16 @@ const LoginPage = ({navigation}) => {
     return null;
 };
 
+let IOSCLIENTID = CONFIG.IOSCLIENTID;
+let ANDROIDCLIENTID = CONFIG.ANDROIDCLIENTID;
+
 async function googleLogin(navigation) {
     // wait for access token from Expo's Google API
     const result = await Google.logInAsync({
-        iosClientId: process.env.IOSCLIENTID,
-        androidClientId: process.env.ANDROIDCLIENTID
+        // iosClientId: process.env.IOSCLIENTID,
+        // androidClientId: process.env.ANDROIDCLIENTID,
+        iosClientId: IOSCLIENTID,
+        androidClientId: ANDROIDCLIENTID,
     });
 
     if (result.type === 'success') {
@@ -30,6 +35,7 @@ async function googleLogin(navigation) {
         await storage.retrieve("email");
 
         await passTokenToBackend(result);
+        console.log(result.idToken);
         navigation.navigate('Home', {"name": result.user.name, "email": result.user.email})
     }
 }

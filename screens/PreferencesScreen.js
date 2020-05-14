@@ -14,7 +14,6 @@ const PreferencesScreen =  ({navigation}) => {
     let storage = new Storage();
 
     // want to use
-
     function deleteItem (item) {
         // filter out the toRemove food
         let newFood = results.food.filter(toRemove => item !== toRemove);
