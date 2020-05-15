@@ -1,5 +1,6 @@
-import React from 'react';
-import {StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, TextInput, View} from 'react-native';
+import { Button } from 'react-native-elements';
 import {ScrollView} from "react-native-gesture-handler";
 import {Feather} from "@expo/vector-icons";
 import useRecs from "../hooks/useRecs";
@@ -8,9 +9,14 @@ import ResultsList from "../components/ResultsList";
 
 const RecsScreen =  ({navigation}) => {
     // returns an array
-    const [results] = useRecs();
+    const [loc, setLoc] = useState('94122');
+    const [searchApi, results] = useRecs();
     return (
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+            <View style={styles.backgroundStyle}>
+                <TextInput style={styles.inputStyle} placeholder="Location" onChangeText={setLoc} />
+                <Button title="Submit" onPress={() => searchApi(loc)}/>
+            </View>
             <ResultsList navigation={navigation} results={results}/>
         </ScrollView>
     );
@@ -53,7 +59,23 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         paddingTop: 30,
-    }
+    },
+    inputStyle: {
+        borderColor: '#fefefe',
+        borderWidth: 1,
+        flex: 1,
+        fontSize: 18,
+        marginHorizontal: 15
+    },
+    backgroundStyle: {
+        marginTop: 10,
+        backgroundColor: "#fefefe",
+        height: 50,
+        borderRadius: 5,
+        marginHorizontal: 30,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
 });
 
 export default RecsScreen;

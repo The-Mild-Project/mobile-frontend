@@ -3,11 +3,11 @@ import yelp from "../api/yelp";
 
 export default () => {
     const [results, setResults] = useState([]);
-    const searchApi = async (type) => {
+    const searchApi = async (type, loc) => {
         try {
             const response = await yelp.get('', {
                 params: {
-                    zip:'94010',
+                    zip: loc,
                     type: type
                 }
             });
@@ -19,7 +19,7 @@ export default () => {
 
     // set initial search results
     useEffect(() => {
-        searchApi("all");
+        searchApi("all", "94122");
     }, []);
 
     return [searchApi, results]

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextInput, StyleSheet, View } from 'react-native';
 
-const SearchBar = ({term, onTermChange, onTermSubmit}) => {
+const SearchBar = ({term, onTermChange, onTermSubmit }) => {
     return (
         <View style={styles.backgroundStyle}>
             <TextInput
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     iconStyle: {
         alignSelf: 'center',
         marginHorizontal: 15
-    }
+    },
 });
 
 export default SearchBar;

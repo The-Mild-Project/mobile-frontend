@@ -5,13 +5,15 @@ import instance from '../utility/Storage'
 export default () => {
     const [results, setResults] = useState([]);
 
-    const searchApi = async () => {
+    const searchApi = async (loc) => {
         instance.retrieve("googleId").then(async (googleId) => {
-            console.log(googleId);
             try {
                 const response = await recs.get('/get', {
                     headers: {
                         googleId: googleId
+                    },
+                    params: {
+                        location: loc
                     }
                 });
                 setResults(response.data.businesses);
@@ -26,5 +28,5 @@ export default () => {
         searchApi();
     }, []);
 
-    return [results]
+    return [searchApi, results]
 }
