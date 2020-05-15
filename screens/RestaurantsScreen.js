@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlatList, Image, Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import {ScrollView} from "react-native-gesture-handler";
 import useRestaurants from "../hooks/useRestaurants";
 import ResultsList from "../components/ResultsList";
@@ -7,8 +7,9 @@ import SearchBar from "../components/SearchBar";
 
 const RestaurantsScreen = ({navigation, route}) => {
     const [term, setTerm] = useState('');
-    // returns an array
+    /* updates State by calling the useRestaurants Hook */
     const [searchApi, results] = useRestaurants();
+
     return (
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <SearchBar term={term} onTermChange={setTerm} onTermSubmit={() => searchApi(term)}/>

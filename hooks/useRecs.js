@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import recs from "../api/recs";
-import Storage from '../utility/Storage'
+import instance from '../utility/Storage'
 
 export default () => {
     const [results, setResults] = useState([]);
 
     const searchApi = async () => {
-        let storage = new Storage();
-        storage.retrieve("googleId").then(async (googleId) => {
+        instance.retrieve("googleId").then(async (googleId) => {
             console.log(googleId);
             try {
                 const response = await recs.get('/get', {
@@ -27,5 +26,5 @@ export default () => {
         searchApi();
     }, []);
 
-    return [searchApi, results]
+    return [results]
 }

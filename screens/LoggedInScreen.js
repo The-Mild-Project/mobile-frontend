@@ -1,17 +1,9 @@
 import * as React from 'react';
-import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Button } from 'react-native-elements';
-import Storage from '../utility/Storage'
-import {Feather} from '@expo/vector-icons'
-
-
-
-/* navigation */
-import { createStackNavigator, createAppContainer, NavigationContainer  } from 'react-navigation';
 
 function LoggedInScreen({route, navigation}) {
-    let storage = new Storage();
     let name;
     let email;
 
@@ -25,7 +17,7 @@ function LoggedInScreen({route, navigation}) {
             <View style={styles.container}>
                 <Text>Hi {name}, welcome to the Food App</Text>
                 <View style={styles.buttonContainer}>
-                    <Button style={styles.smallCenterButton} title="Browse Restaurants" onPress={() => navigation.navigate('Restaurants', {"name": name, "email": email})} />
+                    <Button style={styles.smallCenterButton} title="Search Restaurants" onPress={() => navigation.navigate('Restaurants', {"name": name, "email": email})} />
                     <Button style={styles.smallCenterButton} title="View Recommendations" onPress={() => navigation.navigate('Recs', {"name": name, "email": email})} />
                     <Button style={styles.smallCenterButton} title="Preferences" onPress={() => navigation.navigate('Preferences', {"name": name, "email": email})} />
                     <Button style={styles.smallCenterButton} title="Settings" onPress={() => navigation.navigate('Settings', {"name": name, "email": email})} />

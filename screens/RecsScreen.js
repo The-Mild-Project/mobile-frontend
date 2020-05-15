@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React from 'react';
 import {StyleSheet} from 'react-native';
 import {ScrollView} from "react-native-gesture-handler";
 import {Feather} from "@expo/vector-icons";
@@ -7,10 +7,8 @@ import ResultsList from "../components/ResultsList";
 
 
 const RecsScreen =  ({navigation}) => {
-    
-    const [term, setTerm] = useState('');
     // returns an array
-    const [searchApi, results] = useRecs();
+    const [results] = useRecs();
     return (
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <ResultsList navigation={navigation} results={results}/>

@@ -4,11 +4,10 @@ import {ScrollView} from "react-native-gesture-handler";
 import useRestaurants from "../hooks/useRestaurants";
 import ResultsList from "../components/ResultsList";
 import SearchBar from "../components/SearchBar";
-import Storage from '../utility/Storage';
+import instance from '../utility/Storage';
 
 const SettingsScreen = ({route, navigation}) => {
     const [term, setTerm] = useState('');
-    const storage = new Storage();
     let name;
     let email;
     if (route !== undefined ) {
@@ -20,7 +19,7 @@ const SettingsScreen = ({route, navigation}) => {
 
     const logout = () => {
         // remove from storage and redirect to login
-        storage.remove("googleId").then(() => {
+        instance.remove("googleId").then(() => {
             navigation.navigate('Welcome')
         })
     }

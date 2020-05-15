@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View, TextInput} from 'react-native';
+import { FlatList, StyleSheet, Text, View, TextInput} from 'react-native';
 import { Button } from 'react-native-elements';
 import {ScrollView} from "react-native-gesture-handler";
 import preferences from "../api/preferences";
-import Storage from '../utility/Storage';
+import instance from '../utility/Storage';
 
 
 const CreatePreferenceScreen =  ({route, navigation}) => {
@@ -11,7 +11,6 @@ const CreatePreferenceScreen =  ({route, navigation}) => {
     let [food, setFood] = useState([]);
     let [preference, setPreference] = useState("");
     // get from localstorage
-    let storage = new Storage();
 
     // the callback argument makes it so it will respond correctly to the call being made within the screen
     function addItem (item, callback) {
@@ -19,9 +18,8 @@ const CreatePreferenceScreen =  ({route, navigation}) => {
         let newState = {"food": newFood};
         setResults(newState);
         setFood(newFood);
-        console.log(newFood);
         let jsonFood = JSON.stringify(newFood);
-        storage.retrieve("googleId").then(async (googleId) => {
+        instance.retrieve("googleId").then(async (googleId) => {
             try {
                 await preferences.post('/set',
                     jsonFood
@@ -30,7 +28,7 @@ const CreatePreferenceScreen =  ({route, navigation}) => {
                             googleId: googleId
                         },
                     });
-                await storage.add("preference", item);
+                await instance.add("preference", item);
                 callback();
             } catch (err) {
                 console.log("Error:", err);
@@ -40,7 +38,7 @@ const CreatePreferenceScreen =  ({route, navigation}) => {
 
     /* this will execute only once on screen load */
     useEffect(() => {
-        storage.retrieve("googleId").then(async (googleId) => {
+        instance.retrieve("googleId").then(async (googleId) => {
             try {
                 const response = await preferences.get('/get', {
                     headers: {
@@ -57,10 +55,6 @@ const CreatePreferenceScreen =  ({route, navigation}) => {
             setFood(route.params.results.food);
         }
     }, []);
-
-
-
-    // so we can filter by type of food later
 
     return (
         <ScrollView style={styles.container}>

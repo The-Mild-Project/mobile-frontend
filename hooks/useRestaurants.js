@@ -3,8 +3,6 @@ import yelp from "../api/yelp";
 
 export default () => {
     const [results, setResults] = useState([]);
-
-
     const searchApi = async (type) => {
         try {
             const response = await yelp.get('', {
@@ -13,8 +11,6 @@ export default () => {
                     type: type
                 }
             });
-            console.log("search API called");
-            console.log(response);
             setResults(response.data);
         } catch(err) {
             console.log(err)
@@ -23,7 +19,7 @@ export default () => {
 
     // set initial search results
     useEffect(() => {
-        searchApi("pasta");
+        searchApi("all");
     }, []);
 
     return [searchApi, results]

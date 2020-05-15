@@ -105,7 +105,7 @@ exports[`App renders the loading screen 1`] = `
                   }
                 }
               >
-                Browse Restaurants
+                Search Restaurants
               </Text>
             </View>
           </View>

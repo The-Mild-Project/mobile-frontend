@@ -1,9 +1,6 @@
 import * as SecureStore from "expo-secure-store";
 
 class Storage {
-    constructor() {
-
-    }
 
     retrieve(key) {
         const retrieveItem = async (key) => {
@@ -41,4 +38,7 @@ class Storage {
 
 }
 
-export default Storage;
+const instance = new Storage();
+Object.freeze(instance);
+
+export default instance;
