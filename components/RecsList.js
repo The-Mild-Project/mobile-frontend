@@ -3,8 +3,6 @@ import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import ResultsDetail from "./ResultsDetail";
 
 const RecsList = ({title, results}) => {
-    console.log("in component");
-    console.log(results);
     return <View>
         <Text>{title}</Text>
         <FlatList

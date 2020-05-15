@@ -8,6 +8,7 @@ import Storage from '../utility/Storage';
 
 const SettingsScreen = ({route, navigation}) => {
     const [term, setTerm] = useState('');
+    const storage = new Storage();
     let name;
     let email;
     if (route !== undefined ) {
@@ -15,7 +16,7 @@ const SettingsScreen = ({route, navigation}) => {
         email = route.params.email;
     }
 
-    const storage = new Storage();
+
 
     const logout = () => {
         // remove from storage and redirect to login

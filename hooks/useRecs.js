@@ -15,8 +15,7 @@ export default () => {
                         googleId: googleId
                     }
                 });
-                console.log(response.data);
-                setResults(response.data);
+                setResults(response.data.businesses);
             } catch (err) {
                 console.log("Error:", err);
             }

@@ -1,10 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import {Feather} from '@expo/vector-icons'
-import preferences from "../api/preferences";
 
 const PreferencesList = ({title, results}) => {
-
 
     return (
         <View>
