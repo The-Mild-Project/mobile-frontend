@@ -4,17 +4,14 @@ import {ScrollView} from "react-native-gesture-handler";
 import preferences from "../api/preferences";
 import { Button } from 'react-native-elements';
 import {Feather} from "@expo/vector-icons";
-import Storage from '../utility/Storage'
+import instance from '../utility/Storage'
 
 
 const PreferencesScreen =  ({navigation}) => {
     let [results, setResults] = useState([]);
     let [food, setFood] = useState([]);
-    // get from localstorage
-    let storage = new Storage();
 
     // want to use
-
     function deleteItem (item) {
         // filter out the toRemove food
         let newFood = results.food.filter(toRemove => item !== toRemove);
@@ -23,7 +20,7 @@ const PreferencesScreen =  ({navigation}) => {
         setFood(newFood);
         let jsonFood = JSON.stringify(newFood);
 
-        storage.retrieve("googleId").then(async (googleId) => {
+        instance.retrieve("googleId").then(async (googleId) => {
              try {
                 const response = await preferences.post('/set',
                     jsonFood
@@ -40,7 +37,7 @@ const PreferencesScreen =  ({navigation}) => {
 
     /* this will execute only once on screen load */
     useEffect(() => {
-        storage.retrieve("googleId").then(async (googleId) => {
+        instance.retrieve("googleId").then(async (googleId) => {
             try {
                 const response = await preferences.get('/get', {
                     headers: {

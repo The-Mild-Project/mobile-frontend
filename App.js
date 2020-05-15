@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity} from 'react-native';
 import HomeScreen from "./screens/HomeScreen";
-import LoginPage from "./screens/LoginPage";
+import LoginScreen from "./screens/LoginScreen";
 import LoggedInScreen from "./screens/LoggedInScreen";
 import RestaurantsScreen from "./screens/RestaurantsScreen";
 import ResultsShowScreen from "./screens/ResultsShowScreen";
@@ -32,7 +32,7 @@ function StackNav() {
             }}
             initialRouteName="Welcome">
             <Stack.Screen name="Welcome" component={HomeScreen} />
-            <Stack.Screen name="Login" component={LoginPage} />
+            <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen options={() => ({ headerLeft: ""})}
                           name="Home" component={LoggedInScreen} />
             <Stack.Screen name="Restaurants" component={RestaurantsScreen} />
