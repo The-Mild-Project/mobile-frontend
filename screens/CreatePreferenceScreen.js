@@ -6,9 +6,10 @@ import preferences from "../api/preferences";
 import instance from '../utility/Storage';
 
 
+
 const CreatePreferenceScreen =  ({route, navigation}) => {
     let [results, setResults] = useState([]);
-    let [food, setFood] = useState([]);
+    //let [food, setFood] = useState([]);
     let [preference, setPreference] = useState("");
     // get from localstorage
 
@@ -17,7 +18,7 @@ const CreatePreferenceScreen =  ({route, navigation}) => {
         const newFood = results.food.concat(item);
         let newState = {"food": newFood};
         setResults(newState);
-        setFood(newFood);
+        //setFood(newFood);
         let jsonFood = JSON.stringify(newFood);
         instance.retrieve("googleId").then(async (googleId) => {
             try {
@@ -52,7 +53,7 @@ const CreatePreferenceScreen =  ({route, navigation}) => {
         });
         if (route !== undefined) {
             setResults(route.params.results);
-            setFood(route.params.results.food);
+            //setFood(route.params.results.food);
         }
     }, []);
 
@@ -61,7 +62,8 @@ const CreatePreferenceScreen =  ({route, navigation}) => {
             <View style={styles.container}>
                 <FlatList
                     data={results.food}
-                    renderItem={({item, index}) => {
+                    keyExtractor={(result) => result.id}
+                    renderItem={({item}) => {
                         return (
                             <View style={styles.row}>
                                 <Text style={styles.title}>{item}</Text>

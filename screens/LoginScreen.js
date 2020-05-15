@@ -10,8 +10,8 @@ const LoginScreen = ({navigation}) => {
     return null;
 };
 
-//let IOSCLIENTID = CONFIG.IOSCLIENTID;
-//let ANDROIDCLIENTID = CONFIG.ANDROIDCLIENTID;
+// let IOSCLIENTID = CONFIG.IOSCLIENTID;
+// let ANDROIDCLIENTID = CONFIG.ANDROIDCLIENTID;
 
 async function googleLogin(navigation) {
     // wait for access token from Expo's Google API
